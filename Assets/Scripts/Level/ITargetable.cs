@@ -1,6 +1,7 @@
-﻿namespace Level
+﻿using UnityEngine;
+namespace Level
 {
-    public interface IMoveable
+    public interface ITargetable
     {
         public void MoveDown(float speed);
     }
