@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using Infrastructure.States;
 using UnityEngine;
 
-public class EntryPoint : MonoBehaviour
+namespace Infrastructure
 {
-    // Start is called before the first frame update
-    void Start()
+    public class EntryPoint : MonoBehaviour, ICoroutineRunner
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private Game _game;
+        private void Awake()
+        {
+            _game = new Game(this);
+            _game.StateMachine.Enter<EntryPointState>();
+        }
     }
 }
