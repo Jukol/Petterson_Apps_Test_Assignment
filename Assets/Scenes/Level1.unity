@@ -156,7 +156,7 @@ MonoBehaviour:
   minInterval: 0.5
   maxInterval: 2
   minSize: 0.1
-  maxSize: 3
+  maxSize: 2
 --- !u!4 &261924606
 Transform:
   m_ObjectHideFlags: 0

@@ -36,13 +36,16 @@ namespace Level
                 var position = randomData.Position;
                 var color = randomData.Color;
                 var size = randomData.Size;
-                var speed = 1 / size;
+                var speed = 0.5f / size;
+                int points = (int) (1 / size * 10);
 
                 yield return new WaitForSeconds(time);
+                
+                circlePrefab.Init(color, speed, size, position, points);
 
                 Instantiate(circlePrefab, transform);
 
-                circlePrefab.Init(color, speed, size, position);
+                
             }
         }
 
