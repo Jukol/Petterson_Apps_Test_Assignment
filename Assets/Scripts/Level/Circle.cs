@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 namespace Level
 {
     public class Circle : MonoBehaviour, ITargetable
     {
+        public event Action<int> OnTargetClicked;
         
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private float speed;
@@ -18,15 +20,11 @@ namespace Level
             this.points = points;
         }
 
-        private void Update()
-        {
-           MoveDown(speed);
-        }
+        private void Update() => 
+            MoveDown(speed);
 
-        public void MoveDown(float mSpeed)
-        {
+        public void MoveDown(float mSpeed) => 
             transform.Translate(Vector3.down * (Time.deltaTime * mSpeed));
-        }
 
         private void OnBecameInvisible()
         {
@@ -35,8 +33,13 @@ namespace Level
 
         private void OnMouseDown()
         {
-            Debug.Log("Points: " + points);
+            OnTargetClicked?.Invoke(points);
             Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            OnTargetClicked = null;
         }
     }
 }

@@ -1,64 +1,90 @@
 using System;
 using System.Collections;
+using Level.Randomizer;
 using UnityEngine;
-using Random = UnityEngine.Random;
+
 namespace Level
 {
     public class Spawner : MonoBehaviour
     {
+        public event Action<Circle> OnCircleCreated;
+        [SerializeField] public bool running;
+        
         [SerializeField] private Circle circlePrefab;
         [SerializeField] private float minInterval;
         [SerializeField] private float maxInterval;
         [SerializeField] private float minSize;
         [SerializeField] private float maxSize;
-        
 
-        private float _screenHeight;
-        private float _screenWidth;
+        private Camera _camera;
+        private IRandomizable _randomizer;
 
-        public void Init(float height, float width)
+        public void StartButtonHandler()
         {
-            _screenHeight = height;
-            _screenWidth = width;
-        }
-
-        private void Start()
-        {
+            if (running) return;
+            
+            running = true;
             StartCoroutine(Spawn());
         }
+
+        public void StopButtonHandler()
+        {
+            running = false;
+            
+            StopAllCoroutines();
+            
+            foreach (Transform child in transform) 
+                Destroy(child.gameObject);
+        }
+        
+        private void Awake() => 
+            _camera = Camera.main;
+
+        private void OnEnable() => 
+            InitializeRandomizer();
 
         private IEnumerator Spawn()
         {
             while (true)
             {
-                var randomData = Randomizer();
+                var randomData = _randomizer.GetRandomData();
+                
                 var time = randomData.Time;
-                var position = randomData.Position;
+                var place = randomData.Place;
                 var color = randomData.Color;
                 var size = randomData.Size;
+                
                 var speed = 0.5f / size;
                 int points = (int) (1 / size * 10);
-
+                
                 yield return new WaitForSeconds(time);
                 
-                circlePrefab.Init(color, speed, size, position, points);
-
-                Instantiate(circlePrefab, transform);
-
+                circlePrefab.Init(color, speed, size, place, points);
+                var circle = Instantiate(circlePrefab, transform);
                 
+                OnCircleCreated?.Invoke(circle);
             }
         }
-
-        private (float Time, Vector2 Position, Color Color, float Size) Randomizer()
+        
+        private void InitializeRandomizer()
         {
-            var time = Random.Range(minInterval, maxInterval);
-            var size = Random.Range(minSize, maxSize);
-            var position = new Vector2(Random.Range(-_screenWidth * 0.5f + size * 0.5f, _screenWidth * 0.5f - size * 0.5f), 
-                                                    _screenHeight * 0.5f + size * 0.5f);
-            var color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-            
+            var screenHeight = _camera.orthographicSize * 2;
+            var screenWidth = screenHeight / Screen.height * Screen.width;
 
-            return (time, position, color, size);
+            RandomizeParameters parameters = new RandomizeParameters
+            {
+                MinInterval = minInterval,
+                MaxInterval = maxInterval,
+                MinSize = minSize,
+                MaxSize = maxSize
+            };
+
+            _randomizer = new Randomizer.Randomizer(screenHeight, screenWidth, parameters);
+        }
+
+        private void OnDisable()
+        {
+            OnCircleCreated = null;
         }
     }
 }
