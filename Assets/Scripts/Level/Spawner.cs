@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Data;
 using Level.Randomizer;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace Level
         [SerializeField] private float maxInterval;
         [SerializeField] private float minSize;
         [SerializeField] private float maxSize;
+        [SerializeField] private LevelsData levelsData;
 
         private Camera _camera;
         private IRandomizable _randomizer;
