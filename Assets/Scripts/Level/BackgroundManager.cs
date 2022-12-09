@@ -5,13 +5,11 @@ namespace Level
     public class BackgroundManager : MonoBehaviour
     {
         [SerializeField] private Spawner spawner;
-        
         private BackgroundContainer _backgroundContainer;
 
-        private void Awake()
+        public void Init(BackgroundContainer backgroundContainer)
         {
-            _backgroundContainer = FindObjectOfType<BackgroundContainer>();
-            spawner.Init(this);
+            _backgroundContainer = backgroundContainer;
         }
 
         public void MakeActiveBackground(int level)

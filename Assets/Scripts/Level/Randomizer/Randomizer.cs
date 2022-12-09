@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Infrastructure;
+using UnityEngine;
 namespace Level.Randomizer
 {
-    public class Randomizer : IRandomizable
+    public class Randomizer : IRandomizable, IService
     {
         private readonly float _screenWidth;
         private readonly float _screenHeight;

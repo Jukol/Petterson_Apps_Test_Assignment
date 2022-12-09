@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure;
 using UnityEngine;
 using UnityEngine.Networking;
+
 namespace WWW
 {
-    public class BackgroundDownloader : MonoBehaviour
+    public class BackgroundDownloader : MonoBehaviour, IService
     {
         [SerializeField] private Transform backgroundContainer;
 
         private Camera _camera;
 
-        private void Awake() => 
+        public void Init() => 
             _camera = Camera.main;
 
         public async Task<List<SpriteRenderer>> DownloadBackgrounds(string ulr)
