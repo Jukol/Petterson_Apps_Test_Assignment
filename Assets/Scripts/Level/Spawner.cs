@@ -19,7 +19,8 @@ namespace Level
         [SerializeField] private LevelsData levelsData;
         [SerializeField] private ScoreTracker scoreTracker;
         [SerializeField] private TimeTracker timeTracker;
-
+        
+        private BackgroundManager _backgroundManager;
         private Camera _camera;
         private IRandomizable _randomizer;
         private (int currentLevel, int currentScore) _currentLevelAndScore;
@@ -28,10 +29,22 @@ namespace Level
 
 #region Public Methods
         
-        public void Init()
+        public void Init(BackgroundManager backgroundManager)
+        {
+            _screenHeight = _camera.orthographicSize * 2;
+            _screenWidth = _screenHeight / Screen.height * Screen.width;
+            scoreTracker.OnLevelMaxScoreReached += LevelChange;
+            
+            InitializeRandomizer();
+            
+            _backgroundManager = backgroundManager;
+            _backgroundManager.MakeActiveBackground(0);
+            _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
+        }
+
+        private void ReInit()
         {
             InitializeRandomizer();
-            _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
         }
         
         public void StartGame()
@@ -57,15 +70,6 @@ namespace Level
         {
             _camera = Camera.main;
         }
-
-        private void OnEnable()
-        {
-            _screenHeight = _camera.orthographicSize * 2;
-            _screenWidth = _screenHeight / Screen.height * Screen.width;
-            scoreTracker.OnLevelMaxScoreReached += LevelChange;
-            Init();
-        }
-        
         private void OnDisable()
         {
             OnCircleCreated = null;
@@ -131,7 +135,9 @@ namespace Level
             
             ProgressTracker.SaveCurrentLevel(_currentLevelAndScore.currentLevel + 1, scoreTracker.Score);
             
-            Init();
+            _backgroundManager.MakeActiveBackground(_currentLevelAndScore.currentLevel + 1);
+            
+            ReInit();
             
             InterLevelStart();
             

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3610146521
+CRC: 2380549755
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 980cb452f6e6ef8cbcb0c567098e097d
+    Hash: 30bf497f8d979a07c216ddd5e1550605
   TypeTreeHash:
     serializedVersion: 2
     Hash: ad6b12b2571626e113b7d8430dde5201
@@ -25,7 +25,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/BundledAssets/BackgroundsBundle/BackgroundSprite_lvl1.prefab
-- Assets/BundledAssets/BackgroundsBundle/BackgroundSprite_lvl2.prefab
-- Assets/BundledAssets/BackgroundsBundle/BackgroundSprite_lvl3.prefab
+- Assets/BundledAssets/BackgroundsBundle/Backgrounds.prefab
 Dependencies: []

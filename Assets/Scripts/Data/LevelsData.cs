@@ -20,6 +20,5 @@ namespace Data
         public float sizeMaximum;
         public float speedFactor;
         public int maxScore;
-        public SpriteRenderer background;
     }
 }
