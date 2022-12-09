@@ -9,11 +9,14 @@ namespace WWW
     public class BackgroundDownloader : MonoBehaviour, IService
     {
         [SerializeField] private Transform backgroundContainer;
+        [SerializeField] private float screenWidth;
+        [SerializeField] private float screenHeight;
 
-        private Camera _camera;
-
-        public void Init() => 
-            _camera = Camera.main;
+        public void Init(float screenHeight, float screenWidth)
+        {
+            this.screenHeight = screenHeight;
+            this.screenWidth = screenWidth;
+        }
 
         public async Task<List<SpriteRenderer>> DownloadBackgrounds(string ulr)
         {
@@ -47,9 +50,6 @@ namespace WWW
 
         private SpriteRenderer ResizeByScreen(SpriteRenderer spriteRenderer)
         {
-            var screenHeight = _camera.orthographicSize * 2;
-            var screenWidth = screenHeight / Screen.height * Screen.width;
-
             Sprite sprite = spriteRenderer.sprite;
             Vector2 resizeFactor = new Vector2(screenWidth / sprite.bounds.size.x, screenHeight / sprite.bounds.size.y);
 

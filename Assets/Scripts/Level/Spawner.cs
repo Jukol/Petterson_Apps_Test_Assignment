@@ -21,23 +21,22 @@ namespace Level
         [SerializeField] private TimeTracker timeTracker;
         
         private BackgroundManager _backgroundManager;
-        private Camera _camera;
         private IRandomizable _randomizer;
         private (int currentLevel, int currentScore) _currentLevelAndScore;
         private float _screenHeight;
         private float _screenWidth;
+        private Services _services;
 
 #region Public Methods
         
-        public void Init(BackgroundManager backgroundManager)
+        public void Init(BackgroundManager backgroundManager, IRandomizable randomizer, Services services)
         {
-            _screenHeight = _camera.orthographicSize * 2;
-            _screenWidth = _screenHeight / Screen.height * Screen.width;
             scoreTracker.OnLevelMaxScoreReached += LevelChange;
             
             _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
-            
-            InitializeRandomizer(_currentLevelAndScore);
+
+            _randomizer = randomizer;
+            _services = services;
             
             _backgroundManager = backgroundManager;
             _backgroundManager.MakeActiveBackground(0);
@@ -46,7 +45,7 @@ namespace Level
         private void ReInit()
         {
             _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
-            InitializeRandomizer(_currentLevelAndScore);
+            _services.InitRandomizer(levelsData);
         }
         
         public void StartGame()
@@ -68,10 +67,6 @@ namespace Level
         
 #region Unity Calls
         
-        private void Awake()
-        {
-            _camera = Camera.main;
-        }
         private void OnDisable()
         {
             OnCircleCreated = null;
@@ -145,19 +140,7 @@ namespace Level
             
             OnLevelChanged?.Invoke(levelsData.levels[_currentLevelAndScore.currentLevel].name);
         }
-        
-        private void InitializeRandomizer((int currentLevel, int currentScore) currentLevelAndScore)
-        {
-            RandomizeParameters parameters = new RandomizeParameters
-            {
-                MinInterval = levelsData.levels[currentLevelAndScore.currentLevel].intervalMinimum,
-                MaxInterval = levelsData.levels[currentLevelAndScore.currentLevel].intervalMaximum,
-                MinSize = levelsData.levels[currentLevelAndScore.currentLevel].sizeMinimum,
-                MaxSize = levelsData.levels[currentLevelAndScore.currentLevel].sizeMaximum
-            };
 
-            _randomizer = new Randomizer.Randomizer(_screenHeight, _screenWidth, parameters);
-        }
 #endregion
         
     }
