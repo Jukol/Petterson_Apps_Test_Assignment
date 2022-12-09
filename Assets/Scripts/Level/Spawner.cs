@@ -35,16 +35,18 @@ namespace Level
             _screenWidth = _screenHeight / Screen.height * Screen.width;
             scoreTracker.OnLevelMaxScoreReached += LevelChange;
             
-            InitializeRandomizer();
+            _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
+            
+            InitializeRandomizer(_currentLevelAndScore);
             
             _backgroundManager = backgroundManager;
             _backgroundManager.MakeActiveBackground(0);
-            _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
         }
 
         private void ReInit()
         {
-            InitializeRandomizer();
+            _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
+            InitializeRandomizer(_currentLevelAndScore);
         }
         
         public void StartGame()
@@ -135,19 +137,17 @@ namespace Level
             
             ProgressTracker.SaveCurrentLevel(_currentLevelAndScore.currentLevel + 1, scoreTracker.Score);
             
-            _backgroundManager.MakeActiveBackground(_currentLevelAndScore.currentLevel + 1);
-            
             ReInit();
             
+            _backgroundManager.MakeActiveBackground(_currentLevelAndScore.currentLevel);
+
             InterLevelStart();
             
             OnLevelChanged?.Invoke(levelsData.levels[_currentLevelAndScore.currentLevel].name);
         }
         
-        private void InitializeRandomizer()
+        private void InitializeRandomizer((int currentLevel, int currentScore) currentLevelAndScore)
         {
-            var currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
-            
             RandomizeParameters parameters = new RandomizeParameters
             {
                 MinInterval = levelsData.levels[currentLevelAndScore.currentLevel].intervalMinimum,
