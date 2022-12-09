@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Level
+namespace Level.Visual
 {
     public class TimeTracker : MonoBehaviour
     {
@@ -11,13 +11,15 @@ namespace Level
         private static readonly Stopwatch Stopwatch = new(); 
         private readonly string _format = @"hh\:mm\:ss\.ff";
 
-        public void StartTimeTracker() => 
+        public void StartTimeTracker()
+        {
+            Stopwatch.Reset();
             Stopwatch.Start();
-
+        }
+        
         public void StopTimeTracker()
         {
             Stopwatch.Stop();
-            Stopwatch.Reset();
         }
 
         private void Update() => 

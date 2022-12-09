@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+
 namespace Data
 {
     [CreateAssetMenu(fileName = "LevelsData", menuName = "Levels", order = 0)]
@@ -11,8 +12,14 @@ namespace Data
     [Serializable]
     public class LevelData
     {
+        public int id;
         public string name;
-        public float circleSpeed;
+        public float intervalMinimum;
+        public float intervalMaximum;
+        public float sizeMinimum;
+        public float sizeMaximum;
+        public float speedFactor;
         public int maxScore;
+        public SpriteRenderer background;
     }
 }

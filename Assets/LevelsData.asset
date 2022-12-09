@@ -13,12 +13,27 @@ MonoBehaviour:
   m_Name: LevelsData
   m_EditorClassIdentifier: 
   levels:
-  - name: Level 1
-    circleSpeed: 1
-    maxScore: 1000
-  - name: Level 2
-    circleSpeed: 2
-    maxScore: 2000
-  - name: Level 3
-    circleSpeed: 3
-    maxScore: 3000
+  - id: 1
+    name: Level 1
+    intervalMinimum: 0.5
+    intervalMaximum: 2
+    sizeMinimum: 0.3
+    sizeMaximum: 2
+    speedFactor: 0.5
+    maxScore: 200
+  - id: 2
+    name: Level 2
+    intervalMinimum: 0.5
+    intervalMaximum: 1.5
+    sizeMinimum: 0.2
+    sizeMaximum: 3
+    speedFactor: 0.7
+    maxScore: 400
+  - id: 3
+    name: Level 3
+    intervalMinimum: 0.5
+    intervalMaximum: 1
+    sizeMinimum: 0.1
+    sizeMaximum: 4
+    speedFactor: 1
+    maxScore: 600

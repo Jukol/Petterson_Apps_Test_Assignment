@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 2744478699
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: backgroundsbundle
+      Dependencies: {}
