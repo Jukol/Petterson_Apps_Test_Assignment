@@ -4,7 +4,7 @@ namespace Level
 {
     public class BackgroundManager : MonoBehaviour
     {
-        [SerializeField] private Spawner spawner;
+        [SerializeField] private GameObject curtain;
         private BackgroundContainer _backgroundContainer;
 
         public void Init(BackgroundContainer backgroundContainer)
@@ -18,6 +18,7 @@ namespace Level
                 background.gameObject.SetActive(false);
             
             _backgroundContainer.Backgrounds[level].gameObject.SetActive(true);
+            curtain.SetActive(false);
         }
     }
 }

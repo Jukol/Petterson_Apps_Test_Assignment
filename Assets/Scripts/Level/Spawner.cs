@@ -39,7 +39,8 @@ namespace Level
             _services = services;
             
             _backgroundManager = backgroundManager;
-            _backgroundManager.MakeActiveBackground(0);
+            var level = ProgressTracker.GetCurrentLevelAndScore();
+            _backgroundManager.MakeActiveBackground(level.currentLevel);
         }
 
         private void ReInit()

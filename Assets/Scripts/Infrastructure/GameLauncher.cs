@@ -28,10 +28,26 @@ namespace Infrastructure
             var screenHeight = _camera.orthographicSize * 2;
             var screenWidth = screenHeight / Screen.height * Screen.width;
 
-            _services = new Services(screenHeight, screenWidth, backgroundDownloader, backgroundContainer, 
-                                    backgroundManager, spawner, levelsData, bundleUrl);
+            var initParameters = SetInitParameters(screenHeight, screenWidth);
+
+            _services = new Services(initParameters);
             
             _services.StartGame();
+        }
+
+        private InitializationParameters SetInitParameters(float screenHeight, float screenWidth)
+        {
+            var initParameters = new InitializationParameters();
+            initParameters.ScreenHeight = screenHeight;
+            initParameters.ScreenWidth = screenWidth;
+            initParameters.BackgroundDownloader = backgroundDownloader;
+            initParameters.BackgroundContainer = backgroundContainer;
+            initParameters.BackgroundManager = backgroundManager;
+            initParameters.Spawner = spawner;
+            initParameters.LevelsData = levelsData;
+            initParameters.BundleUrl = bundleUrl;
+
+            return initParameters;
         }
     }
 }

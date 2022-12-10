@@ -20,17 +20,16 @@ namespace Infrastructure
         private readonly LevelsData _levelsData;
         private readonly string _bundleUrl;
 
-        public Services(float screenHeight, float screenWidth, BackgroundDownloader backgroundDownloader, 
-            BackgroundContainer backgroundContainer, BackgroundManager backgroundManager, Spawner spawner, LevelsData levelsData, string bundleUrl)
+        public Services(InitializationParameters initParameters)
         {
-            _screenHeight = screenHeight;
-            _screenWidth = screenWidth;
-            _spawner = spawner;
-            _backgroundDownloader = backgroundDownloader;
-            _backgroundContainer = backgroundContainer;
-            _backgroundManager = backgroundManager;
-            _levelsData = levelsData;
-            _bundleUrl = bundleUrl;
+            _screenHeight = initParameters.ScreenHeight;
+            _screenWidth = initParameters.ScreenWidth;
+            _spawner = initParameters.Spawner;
+            _backgroundDownloader = initParameters.BackgroundDownloader;
+            _backgroundContainer = initParameters.BackgroundContainer;
+            _backgroundManager = initParameters.BackgroundManager;
+            _levelsData = initParameters.LevelsData;
+            _bundleUrl = initParameters.BundleUrl;
         }
 
         public void InitRandomizer(LevelsData levelsData)
@@ -52,19 +51,22 @@ namespace Infrastructure
         {
             _backgroundDownloader.Init(_screenHeight, _screenWidth);
             
-            var backgrounds = await _backgroundDownloader.DownloadBackgrounds(bundleUrl);
-            
+            return await _backgroundDownloader.DownloadBackgrounds(bundleUrl);
+        }
+
+        private void InitBackgroundManager(List<SpriteRenderer> backgrounds)
+        {
             foreach (var background in backgrounds) 
                 _backgroundContainer.AddBackground(background);
             
             _backgroundManager.Init(_backgroundContainer);
-            return backgrounds;
         }
 
         public async void StartGame()
         {
             InitRandomizer(_levelsData);
-            await InitBackgrounds(_bundleUrl);
+            var backgrounds = await InitBackgrounds(_bundleUrl);
+            InitBackgroundManager(backgrounds);
             _spawner.Init(_backgroundManager, _randomizeService, this);
         }
     }
