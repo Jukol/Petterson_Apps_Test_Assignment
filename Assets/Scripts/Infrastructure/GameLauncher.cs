@@ -10,7 +10,11 @@ namespace Infrastructure
         [SerializeField] private LevelsData levelsData;
         [SerializeField] private BackgroundDownloader backgroundDownloader;
         [SerializeField] private Spawner spawner;
-        [SerializeField] private string bundleUrl;
+        
+        [SerializeField] private string bundleUrlStandalone;
+        [SerializeField] private string bundleUrlAndroid;
+        [SerializeField] private string bundleUrlIos;
+        
         [SerializeField] private BackgroundManager backgroundManager;
         [SerializeField] private BackgroundContainer backgroundContainer;
 
@@ -45,7 +49,22 @@ namespace Infrastructure
             initParameters.BackgroundManager = backgroundManager;
             initParameters.Spawner = spawner;
             initParameters.LevelsData = levelsData;
-            initParameters.BundleUrl = bundleUrl;
+
+            if (Application.platform == RuntimePlatform.WindowsEditor ||
+                Application.platform == RuntimePlatform.LinuxPlayer ||
+                Application.platform == RuntimePlatform.WindowsPlayer ||
+                Application.platform == RuntimePlatform.OSXPlayer)
+            {
+                initParameters.BundleUrl = bundleUrlStandalone;
+            }
+            else if (Application.platform == RuntimePlatform.Android)
+            {
+                initParameters.BundleUrl = bundleUrlAndroid;
+            }
+            else if (Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                initParameters.BundleUrl = bundleUrlIos;
+            }
 
             return initParameters;
         }

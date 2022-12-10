@@ -16,9 +16,10 @@ namespace Infrastructure
         private readonly BackgroundDownloader _backgroundDownloader;
         private readonly BackgroundContainer _backgroundContainer;
         private readonly BackgroundManager _backgroundManager;
-        private IRandomizable _randomizeService;
         private readonly LevelsData _levelsData;
         private readonly string _bundleUrl;
+        
+        private IRandomizable _randomizeService;
 
         public Services(InitializationParameters initParameters)
         {
@@ -34,7 +35,7 @@ namespace Infrastructure
 
         public void InitRandomizer(LevelsData levelsData)
         {
-            var currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
+            var currentLevelAndScore = GetCurrentLevelAndScore();
             
             var randomizeParameters = new RandomizeParameters
             {
@@ -73,7 +74,7 @@ namespace Infrastructure
             foreach (var background in backgrounds) 
                 _backgroundContainer.AddBackground(background);
             
-            _backgroundManager.Init(_backgroundContainer);
+            _backgroundManager.Init(_backgroundContainer, this);
         }
 
         public async void StartGame()

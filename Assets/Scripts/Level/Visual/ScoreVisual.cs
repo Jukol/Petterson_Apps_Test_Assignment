@@ -8,10 +8,10 @@ namespace Level.Visual
     {
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private ScoreTracker scoreTracker;
-
-        private void OnEnable()
+        
+        public void Init(Services services)
         {
-            scoreText.text = ProgressTracker.GetCurrentLevelAndScore().currentScore.ToString();
+            scoreText.text = services.GetCurrentLevelAndScore().currentScore.ToString();
             scoreTracker.OnScoreUpdated += UpdateScoreText;
         }
 

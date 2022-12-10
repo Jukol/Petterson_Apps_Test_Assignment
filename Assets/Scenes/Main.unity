@@ -223,7 +223,9 @@ MonoBehaviour:
   levelsData: {fileID: 11400000, guid: 20b047af54a72c7449c28327ddc61927, type: 2}
   backgroundDownloader: {fileID: 2022339810}
   spawner: {fileID: 261924605}
-  bundleUrl: https://englishforeverybody.com.ua/backgrounds/backgroundsbundle
+  bundleUrlStandalone: https://englishforeverybody.com.ua/backgrounds/standalone/backgroundsbundle
+  bundleUrlAndroid: https://englishforeverybody.com.ua/backgrounds/android/backgroundsbundle
+  bundleUrlIos: https://englishforeverybody.com.ua/backgrounds/ios/backgroundsbundle
   backgroundManager: {fileID: 994475375}
   backgroundContainer: {fileID: 2050874912}
 --- !u!4 &121419393
@@ -381,10 +383,10 @@ RectTransform:
   m_Father: {fileID: 765539777}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25.421204}
-  m_SizeDelta: {x: 361.3113, y: 50.842407}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -90.16806, y: -25.421204}
+  m_SizeDelta: {x: 180.33612, y: 50.8424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &271560723
 MonoBehaviour:
@@ -732,7 +734,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &718891340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -804,6 +806,7 @@ GameObject:
   - component: {fileID: 765539776}
   - component: {fileID: 765539775}
   - component: {fileID: 765539774}
+  - component: {fileID: 765539778}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -898,6 +901,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &765539778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765539773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea39e98f4d34167a0b69e0ec2270db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIntro: {fileID: 163594999}
+  scoreVisual: {fileID: 271560723}
+  scoreTracker: {fileID: 599059461}
 --- !u!1 &925811558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,6 +1375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curtain: {fileID: 718891339}
+  hudManager: {fileID: 765539778}
 --- !u!4 &994475376
 Transform:
   m_ObjectHideFlags: 0
@@ -1840,10 +1859,10 @@ RectTransform:
   m_Father: {fileID: 765539777}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -119.34, y: -586}
-  m_SizeDelta: {x: 361.3113, y: 50.8424}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 180.65565, y: 78}
+  m_SizeDelta: {x: 361.3113, y: 50.842407}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1661338393
 MonoBehaviour:

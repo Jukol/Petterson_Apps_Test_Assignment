@@ -33,14 +33,14 @@ namespace Level
         {
             scoreTracker.OnLevelMaxScoreReached += LevelChange;
             
-            _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
+            _services = services;
+            _currentLevelAndScore = _services.GetCurrentLevelAndScore();
 
             _randomizer = randomizer;
-            _services = services;
             
             _backgroundManager = backgroundManager;
-            var level = _services.GetCurrentLevelAndScore();
-            _backgroundManager.MakeActiveBackground(level.currentLevel);
+            
+            _backgroundManager.MakeActiveBackground(_currentLevelAndScore.currentLevel);
         }
 
         private void ReInit()

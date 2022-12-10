@@ -24,9 +24,9 @@ namespace Level
             OnScoreUpdated?.Invoke(_score);
         }
         
-        private void Awake()
+        public void Init(Services services)
         {
-            _score = ProgressTracker.GetCurrentLevelAndScore().currentScore;
+            _score = services.GetCurrentLevelAndScore().currentScore;
             spawner.OnCircleCreated += SubscribeToCircleClick;
         }
 

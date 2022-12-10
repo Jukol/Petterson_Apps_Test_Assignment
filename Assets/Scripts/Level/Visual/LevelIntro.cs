@@ -14,32 +14,30 @@ namespace Level.Visual
         [SerializeField] private Spawner spawner;
         [SerializeField] private LevelsData levelsData;
 
-
         private WaitForSeconds _wait;
+        private Services _services;
+        private string _currentLevelName;
 
-        private void Awake()
+        public void Init(Services services)
         {
             _wait = new WaitForSeconds(showTime);
-            spawner.OnLevelChanged += ShowLevelNumber;
-        }
-
-        private void OnEnable()
-        {
-            var currentLevel = ProgressTracker.GetCurrentLevelAndScore().currentLevel;
-            var levelName = levelsData.levels[currentLevel].name;
-            StartCoroutine(SetAndShowInfo(levelName));
+            _services = services;
+            spawner.OnLevelChanged += ShowLevelName;
+            
+            var currentLevel = _services.GetCurrentLevelAndScore().currentLevel;
+            _currentLevelName = levelsData.levels[currentLevel].name;
+            StartCoroutine(SetAndShowInfo(_currentLevelName));
         }
 
         private IEnumerator SetAndShowInfo(string levelName)
         {
-            //int currentScene = SceneManager.GetActiveScene().buildIndex;
             levelNumberText.text = levelName;
             info.SetActive(true);
             yield return _wait;
             info.SetActive(false);
         }
 
-        private void ShowLevelNumber(string levelName)
+        private void ShowLevelName(string levelName)
         {
             StartCoroutine(SetAndShowInfo(levelName));
         }
