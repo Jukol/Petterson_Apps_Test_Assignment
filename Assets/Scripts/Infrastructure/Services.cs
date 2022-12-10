@@ -47,6 +47,20 @@ namespace Infrastructure
             _randomizeService = new Randomizer(_screenHeight, _screenWidth, randomizeParameters);
         }
 
+        public (int currentLevel, int currentScore) GetCurrentLevelAndScore()
+        {
+            int level = PlayerPrefs.GetInt("Level", 0);
+            int score = PlayerPrefs.GetInt("Score", 0);
+
+            return (level, score);
+        }
+        
+        public void SaveCurrentLevel(int level, int score)
+        {
+            PlayerPrefs.SetInt("Level", level);
+            PlayerPrefs.SetInt("Score", score);
+        }
+
         private async Task<List<SpriteRenderer>> InitBackgrounds(string bundleUrl)
         {
             _backgroundDownloader.Init(_screenHeight, _screenWidth);

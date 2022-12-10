@@ -39,13 +39,13 @@ namespace Level
             _services = services;
             
             _backgroundManager = backgroundManager;
-            var level = ProgressTracker.GetCurrentLevelAndScore();
+            var level = _services.GetCurrentLevelAndScore();
             _backgroundManager.MakeActiveBackground(level.currentLevel);
         }
 
         private void ReInit()
         {
-            _currentLevelAndScore = ProgressTracker.GetCurrentLevelAndScore();
+            _currentLevelAndScore = _services.GetCurrentLevelAndScore();
             _services.InitRandomizer(levelsData);
         }
         
@@ -131,7 +131,7 @@ namespace Level
             
             InterLevelStop();
             
-            ProgressTracker.SaveCurrentLevel(_currentLevelAndScore.currentLevel + 1, scoreTracker.Score);
+            _services.SaveCurrentLevel(_currentLevelAndScore.currentLevel + 1, scoreTracker.Score);
             
             ReInit();
             
