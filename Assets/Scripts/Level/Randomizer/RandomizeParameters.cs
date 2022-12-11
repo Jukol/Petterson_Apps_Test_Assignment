@@ -5,6 +5,6 @@
         public float MinInterval;
         public float MaxInterval;
         public float MinSize;
-        public float MaxSize;
+        public float MaxSizeFactor;
     }
 }

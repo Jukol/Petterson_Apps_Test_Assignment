@@ -3,7 +3,7 @@ namespace Textures
 {
     public class TextureGenerator
     {
-        public Sprite CreateSprite(int texSize, int checkerSize, Color clr1, Color clr2)
+        public Sprite CreateSprite(int texSize, int checkerSize, Color clr1, Color clr2, float resolution)
         {
             var squareTexture = CreateSquareTexture(texSize, checkerSize, clr1, clr2);
 
@@ -11,7 +11,8 @@ namespace Textures
                 squareTexture.width * 0.5f, squareTexture.width * 0.5f, 
                 squareTexture.width * 0.5f, squareTexture);
             
-            return Sprite.Create(circledTexture, new Rect(0f, 0f, circledTexture.width, circledTexture.height), new Vector2(0.5f, 0.5f), 100);
+            return Sprite.Create(circledTexture, new Rect(0f, 0f, circledTexture.width, circledTexture.height), 
+                new Vector2(0.5f, 0.5f), resolution);
         }
 
         private Texture2D CreateSquareTexture(int texSize, int checkerSize, Color color1, Color color2)

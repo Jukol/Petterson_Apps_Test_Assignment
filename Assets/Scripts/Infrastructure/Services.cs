@@ -10,18 +10,23 @@ namespace Infrastructure
 {
     public class Services : IServices
     {
+        public SpritePool SpritePool => _spritePool;
+        public float ScreenWidth => _screenWidth;
+        public float ScreenHeight => _screenHeight;
+        
         private readonly float _screenHeight;
         private readonly float _screenWidth;
         private readonly Spawner _spawner;
         private readonly BackgroundDownloader _backgroundDownloader;
         private readonly BackgroundContainer _backgroundContainer;
         private readonly BackgroundManager _backgroundManager;
-        private readonly LevelsData _levelsData;
+        private readonly GameSettings _gameSettings;
         private readonly string _bundleUrl;
         
         private IRandomizable _randomizeService;
+        private readonly SpritePool _spritePool;
 
-        public Services(InitializationParameters initParameters)
+        public Services(InitializationParameters initParameters, SpritePool spritePool)
         {
             _screenHeight = initParameters.ScreenHeight;
             _screenWidth = initParameters.ScreenWidth;
@@ -29,20 +34,23 @@ namespace Infrastructure
             _backgroundDownloader = initParameters.BackgroundDownloader;
             _backgroundContainer = initParameters.BackgroundContainer;
             _backgroundManager = initParameters.BackgroundManager;
-            _levelsData = initParameters.LevelsData;
+            _gameSettings = initParameters.GameSettings;
             _bundleUrl = initParameters.BundleUrl;
+            _spritePool = spritePool;
+
+            _spritePool.Init(_gameSettings);
         }
 
-        public void InitRandomizer(LevelsData levelsData)
+        public void InitRandomizer(GameSettings gameSettings)
         {
             var currentLevelAndScore = GetCurrentLevelAndScore();
             
             var randomizeParameters = new RandomizeParameters
             {
-                MinInterval = levelsData.levels[currentLevelAndScore.currentLevel].intervalMinimum,
-                MaxInterval = levelsData.levels[currentLevelAndScore.currentLevel].intervalMaximum,
-                MinSize = levelsData.levels[currentLevelAndScore.currentLevel].sizeMinimum,
-                MaxSize = levelsData.levels[currentLevelAndScore.currentLevel].sizeMaximum
+                MinInterval = gameSettings.levels[currentLevelAndScore.currentLevel].intervalMinimum,
+                MaxInterval = gameSettings.levels[currentLevelAndScore.currentLevel].intervalMaximum,
+                MinSize = gameSettings.levels[currentLevelAndScore.currentLevel].minimumSizeFactor,
+                MaxSizeFactor = gameSettings.levels[currentLevelAndScore.currentLevel].maximumSizeFactor
             };
             
             _randomizeService = new Randomizer(_screenHeight, _screenWidth, randomizeParameters);
@@ -79,7 +87,7 @@ namespace Infrastructure
 
         public async void StartGame()
         {
-            InitRandomizer(_levelsData);
+            InitRandomizer(_gameSettings);
             var backgrounds = await InitBackgrounds(_bundleUrl);
             InitBackgroundManager(backgrounds);
             _spawner.Init(_backgroundManager, _randomizeService, this);

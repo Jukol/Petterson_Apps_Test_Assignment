@@ -12,7 +12,7 @@ namespace Level.Visual
         [SerializeField] private TMP_Text levelNumberText;
         [SerializeField] private float showTime;
         [SerializeField] private Spawner spawner;
-        [SerializeField] private LevelsData levelsData;
+        [SerializeField] private GameSettings gameSettings;
 
         private WaitForSeconds _wait;
         private Services _services;
@@ -25,7 +25,7 @@ namespace Level.Visual
             spawner.OnLevelChanged += ShowLevelName;
             
             var currentLevel = _services.GetCurrentLevelAndScore().currentLevel;
-            _currentLevelName = levelsData.levels[currentLevel].name;
+            _currentLevelName = gameSettings.levels[currentLevel].name;
             StartCoroutine(SetAndShowInfo(_currentLevelName));
         }
 

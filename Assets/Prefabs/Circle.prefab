@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7533872333411012399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9390621, y: 5.561917, z: 0}
-  m_LocalScale: {x: 1.1238334, y: 1.1238334, z: 0}
+  m_LocalPosition: {x: -1.538737, y: 6.0711484, z: 0}
+  m_LocalScale: {x: 2.1422963, y: 2.1422963, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,15 +75,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.18045616, g: 0.64895, b: 0.020966649, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7533872333411012384
@@ -99,9 +99,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7533872333411012385}
-  speed: 0.6228681
-  score: 8
-  maxScore: 400
+  speed: 0.46678883
+  score: 4
+  maxScore: 1000
+  collider: {fileID: 6362699302815015875}
 --- !u!58 &6362699302815015875
 CircleCollider2D:
   m_ObjectHideFlags: 0

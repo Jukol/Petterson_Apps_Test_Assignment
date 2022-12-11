@@ -11,14 +11,27 @@ namespace Level.Targets
         [SerializeField] private float speed;
         [SerializeField] private int score;
         [SerializeField] private int maxScore;
+        [SerializeField] private CircleCollider2D collider;
+        
 
         public void Init(TargetInitParameters targetInitParameters)
         {
-            var myTransform = transform;
+            Reset();
             
-            myTransform.localScale = new Vector2(targetInitParameters.Size, targetInitParameters.Size);
-            spriteRenderer.color = targetInitParameters.Color;
-            myTransform.position = targetInitParameters.Place;
+            var myTransform = transform;
+            var size = targetInitParameters.Size;
+            var position = targetInitParameters.Place;
+            var texSize = targetInitParameters.Sprite.rect.height;
+            
+            spriteRenderer.sprite = targetInitParameters.Sprite;
+
+            //var sizeBySprite = size / (colliderRadius * 2);
+            //var positionBySprite = new Vector2(position.x / (colliderRadius * 2), position.y / (colliderRadius * 2)); 
+            
+            myTransform.localScale = new Vector3(size, size, 1);
+            
+            myTransform.position = position;
+
             speed = targetInitParameters.Speed;
             score = targetInitParameters.Score;
             maxScore = targetInitParameters.MaxScore;
@@ -29,6 +42,15 @@ namespace Level.Targets
 
         public void MoveDown(float mSpeed) => 
             transform.Translate(Vector3.down * (Time.deltaTime * mSpeed));
+
+        private void Reset()
+        {
+            var myTransform = transform;
+            
+            myTransform.position = Vector2.zero;
+            myTransform.localScale = Vector3.one;
+            collider.radius = 0.5f;
+        }
 
         private void OnBecameInvisible() => 
             Destroy(gameObject);

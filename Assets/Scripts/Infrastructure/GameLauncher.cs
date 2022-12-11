@@ -7,7 +7,7 @@ namespace Infrastructure
 {
     public class GameLauncher : MonoBehaviour
     {
-        [SerializeField] private LevelsData levelsData;
+        [SerializeField] private GameSettings gameSettings;
         [SerializeField] private BackgroundDownloader backgroundDownloader;
         [SerializeField] private Spawner spawner;
         
@@ -17,6 +17,7 @@ namespace Infrastructure
         
         [SerializeField] private BackgroundManager backgroundManager;
         [SerializeField] private BackgroundContainer backgroundContainer;
+        [SerializeField] private SpritePool spritePool;
 
         private IServices _services; 
         private Camera _camera;
@@ -34,7 +35,7 @@ namespace Infrastructure
 
             var initParameters = SetInitParameters(screenHeight, screenWidth);
 
-            _services = new Services(initParameters);
+            _services = new Services(initParameters, spritePool);
             
             _services.StartGame();
         }
@@ -48,7 +49,7 @@ namespace Infrastructure
             initParameters.BackgroundContainer = backgroundContainer;
             initParameters.BackgroundManager = backgroundManager;
             initParameters.Spawner = spawner;
-            initParameters.LevelsData = levelsData;
+            initParameters.GameSettings = gameSettings;
 
             if (Application.platform == RuntimePlatform.WindowsEditor ||
                 Application.platform == RuntimePlatform.LinuxPlayer ||

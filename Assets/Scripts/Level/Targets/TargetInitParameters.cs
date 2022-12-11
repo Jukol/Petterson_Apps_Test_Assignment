@@ -4,7 +4,7 @@ namespace Level.Targets
 {
     public class TargetInitParameters
     {
-        public Color Color;
+        public Sprite Sprite;
         public float Speed;
         public float Size;
         public Vector2 Place;

@@ -10,30 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ac7e1d7387c4213b52f4ef8b56d723a, type: 3}
-  m_Name: LevelsData
+  m_Name: GameSettings
   m_EditorClassIdentifier: 
+  spritePoolSettings:
+    eachSpriteAmount: 4
+    spriteSizes: 20000000400000008000000000010000
+    checkerSize: 10
   levels:
   - id: 1
     name: Level 1
     intervalMinimum: 0.5
     intervalMaximum: 2
-    sizeMinimum: 0.3
-    sizeMaximum: 2
-    speedFactor: 0.5
+    minimumSizeFactor: 0.08
+    maximumSizeFactor: 0.6
+    speedFactor: 1.5
     maxScore: 200
   - id: 2
     name: Level 2
-    intervalMinimum: 0.5
+    intervalMinimum: 0.4
     intervalMaximum: 1.5
-    sizeMinimum: 0.2
-    sizeMaximum: 3
-    speedFactor: 0.7
+    minimumSizeFactor: 0.03
+    maximumSizeFactor: 0.35
+    speedFactor: 1.8
     maxScore: 400
   - id: 3
     name: Level 3
-    intervalMinimum: 0.5
-    intervalMaximum: 1
-    sizeMinimum: 0.1
-    sizeMaximum: 4
-    speedFactor: 1
-    maxScore: 600
+    intervalMinimum: 0.3
+    intervalMaximum: 1.2
+    minimumSizeFactor: 0.02
+    maximumSizeFactor: 0.2
+    speedFactor: 3
+    maxScore: 1000

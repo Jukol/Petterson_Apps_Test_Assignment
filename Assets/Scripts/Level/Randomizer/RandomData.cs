@@ -7,6 +7,5 @@ namespace Level.Randomizer
         public float Time;
         public Vector2 Place;
         public float Size;
-        public Color Color;
     }
 }

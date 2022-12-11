@@ -11,7 +11,7 @@ namespace Infrastructure
         public BackgroundContainer BackgroundContainer;
         public BackgroundManager BackgroundManager;
         public Spawner Spawner;
-        public LevelsData LevelsData;
+        public GameSettings GameSettings;
         public string BundleUrl;
     }
 }

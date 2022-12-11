@@ -1,7 +1,8 @@
-﻿namespace Level.Randomizer
+﻿using Infrastructure;
+namespace Level.Randomizer
 
 {
-    public interface IRandomizable
+    public interface IRandomizable : IService
     {
         public RandomData GetRandomData();
     }

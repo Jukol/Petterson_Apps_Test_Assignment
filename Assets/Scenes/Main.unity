@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c97c7c35d156a84c96a0b374f0d574c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsData: {fileID: 11400000, guid: 20b047af54a72c7449c28327ddc61927, type: 2}
+  gameSettings: {fileID: 11400000, guid: 20b047af54a72c7449c28327ddc61927, type: 2}
   backgroundDownloader: {fileID: 2022339810}
   spawner: {fileID: 261924605}
   bundleUrlStandalone: https://englishforeverybody.com.ua/backgrounds/standalone/backgroundsbundle
@@ -228,6 +228,7 @@ MonoBehaviour:
   bundleUrlIos: https://englishforeverybody.com.ua/backgrounds/ios/backgroundsbundle
   backgroundManager: {fileID: 994475375}
   backgroundContainer: {fileID: 2050874912}
+  spritePool: {fileID: 289253020}
 --- !u!4 &121419393
 Transform:
   m_ObjectHideFlags: 0
@@ -300,7 +301,7 @@ MonoBehaviour:
   levelNumberText: {fileID: 298505710}
   showTime: 3
   spawner: {fileID: 261924605}
-  levelsData: {fileID: 11400000, guid: 20b047af54a72c7449c28327ddc61927, type: 2}
+  gameSettings: {fileID: 11400000, guid: 20b047af54a72c7449c28327ddc61927, type: 2}
 --- !u!1 &261924604
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRunning: 0
   circlePrefab: {fileID: 7533872333411012384, guid: fb18af882bbe33f438221d685f40a5cd, type: 3}
-  levelsData: {fileID: 11400000, guid: 20b047af54a72c7449c28327ddc61927, type: 2}
+  gameSettings: {fileID: 11400000, guid: 20b047af54a72c7449c28327ddc61927, type: 2}
   scoreTracker: {fileID: 599059461}
   timeTracker: {fileID: 1661338393}
 --- !u!4 &261924606
@@ -402,6 +403,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1095505076}
   scoreTracker: {fileID: 599059461}
+--- !u!1 &289253019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289253021}
+  - component: {fileID: 289253020}
+  m_Layer: 0
+  m_Name: SpritePool_Debug_to_Delete
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &289253020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289253019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac7de53b9274db28fa125c77b5d8085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites0: []
+  sprites1: []
+  sprites2: []
+  sprites3: []
+--- !u!4 &289253021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289253019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &298505708
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &718891340
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2173,7 +2222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2080e1ca197d0045ada5049c23ba2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundContainer: {fileID: 0}
+  backgroundContainer: {fileID: 2050874913}
   screenWidth: 0
   screenHeight: 0
 --- !u!4 &2022339811
