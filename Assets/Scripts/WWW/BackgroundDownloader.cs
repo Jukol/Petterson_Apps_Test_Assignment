@@ -12,10 +12,10 @@ namespace WWW
         [SerializeField] private float screenWidth;
         [SerializeField] private float screenHeight;
 
-        public void Init(float screenHeight, float screenWidth)
+        public void Init(float fScreenHeight, float fScreenWidth)
         {
-            this.screenHeight = screenHeight;
-            this.screenWidth = screenWidth;
+            screenHeight = fScreenHeight;
+            screenWidth = fScreenWidth;
         }
 
         public async Task<List<SpriteRenderer>> DownloadBackgrounds(string ulr)

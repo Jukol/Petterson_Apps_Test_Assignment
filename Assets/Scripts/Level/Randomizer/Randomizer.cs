@@ -1,5 +1,4 @@
-﻿using Infrastructure;
-using UnityEngine;
+﻿using UnityEngine;
 namespace Level.Randomizer
 {
     public class Randomizer : IRandomizable

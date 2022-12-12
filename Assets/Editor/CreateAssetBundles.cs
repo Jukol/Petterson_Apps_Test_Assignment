@@ -1,34 +1,37 @@
-using UnityEditor;
 using System.IO;
+using UnityEditor;
 
-public class CreateAssetBundles
+namespace Editor
 {
-    [MenuItem("Assets/Build AssetBundles")]
-    static void BuildAllAssetBundles()
+    public class CreateAssetBundles
     {
-        string assetBundleDirectoryStandalone = "Assets/StreamingAssets/StandAlone";
-        string assetBundleDirectoryAndroid = "Assets/StreamingAssets/Android";
-        string assetBundleDirectoryIos = "Assets/StreamingAssets/IOS";
+        [MenuItem("Assets/Build AssetBundles")]
+        static void BuildAllAssetBundles()
+        {
+            string assetBundleDirectoryStandalone = "Assets/StreamingAssets/StandAlone";
+            string assetBundleDirectoryAndroid = "Assets/StreamingAssets/Android";
+            string assetBundleDirectoryIos = "Assets/StreamingAssets/IOS";
         
-        if(!Directory.Exists(assetBundleDirectoryStandalone)) 
-            Directory.CreateDirectory(assetBundleDirectoryStandalone);
+            if(!Directory.Exists(assetBundleDirectoryStandalone)) 
+                Directory.CreateDirectory(assetBundleDirectoryStandalone);
         
-        if(!Directory.Exists(assetBundleDirectoryAndroid)) 
-            Directory.CreateDirectory(assetBundleDirectoryAndroid);
+            if(!Directory.Exists(assetBundleDirectoryAndroid)) 
+                Directory.CreateDirectory(assetBundleDirectoryAndroid);
         
-        if(!Directory.Exists(assetBundleDirectoryIos)) 
-            Directory.CreateDirectory(assetBundleDirectoryIos);
+            if(!Directory.Exists(assetBundleDirectoryIos)) 
+                Directory.CreateDirectory(assetBundleDirectoryIos);
         
-        BuildPipeline.BuildAssetBundles(assetBundleDirectoryStandalone, 
-            BuildAssetBundleOptions.None, 
-            BuildTarget.StandaloneWindows);
+            BuildPipeline.BuildAssetBundles(assetBundleDirectoryStandalone, 
+                BuildAssetBundleOptions.None, 
+                BuildTarget.StandaloneWindows);
         
-        BuildPipeline.BuildAssetBundles(assetBundleDirectoryAndroid, 
-            BuildAssetBundleOptions.None, 
-            BuildTarget.Android);
+            BuildPipeline.BuildAssetBundles(assetBundleDirectoryAndroid, 
+                BuildAssetBundleOptions.None, 
+                BuildTarget.Android);
         
-        BuildPipeline.BuildAssetBundles(assetBundleDirectoryIos, 
-            BuildAssetBundleOptions.None, 
-            BuildTarget.iOS);
+            BuildPipeline.BuildAssetBundles(assetBundleDirectoryIos, 
+                BuildAssetBundleOptions.None, 
+                BuildTarget.iOS);
+        }
     }
 }

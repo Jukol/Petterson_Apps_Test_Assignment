@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundContainer : MonoBehaviour
+namespace WWW
 {
-    public List<SpriteRenderer> Backgrounds = new();
-
-    public void AddBackground(SpriteRenderer background)
+    public class BackgroundContainer : MonoBehaviour
     {
-        Backgrounds.Add(background);
+        public List<SpriteRenderer> backgrounds = new();
+
+        public void AddBackground(SpriteRenderer background)
+        {
+            backgrounds.Add(background);
+        }
     }
 }

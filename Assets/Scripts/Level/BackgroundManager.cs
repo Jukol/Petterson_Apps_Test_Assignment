@@ -1,6 +1,7 @@
 using Infrastructure;
 using Level.Visual;
 using UnityEngine;
+using WWW;
 
 namespace Level
 {
@@ -20,10 +21,10 @@ namespace Level
 
         public void MakeActiveBackground(int level)
         {
-            foreach (var background in _backgroundContainer.Backgrounds) 
+            foreach (var background in _backgroundContainer.backgrounds) 
                 background.gameObject.SetActive(false);
             
-            _backgroundContainer.Backgrounds[level].gameObject.SetActive(true);
+            _backgroundContainer.backgrounds[level].gameObject.SetActive(true);
             hudManager.Init(_services);
             curtain.SetActive(false);
         }

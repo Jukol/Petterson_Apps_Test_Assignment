@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-namespace Infrastructure
+﻿namespace Infrastructure
 {
     public interface IService
     {
-        
     }
 }

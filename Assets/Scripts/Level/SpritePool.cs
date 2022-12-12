@@ -2,20 +2,16 @@
 using Data;
 using Textures;
 using UnityEngine;
+
 namespace Level
 {
-    public class SpritePool : MonoBehaviour
+    public class SpritePool
     {
         public List<List<Sprite>> Sprites => _sprites;
 
-        [SerializeField] private List<Sprite> sprites0;
-        [SerializeField] private List<Sprite> sprites1;
-        [SerializeField] private List<Sprite> sprites2;
-        [SerializeField] private List<Sprite> sprites3;
-
         private readonly List<List<Sprite>> _sprites = new();
         
-        public void Init(GameSettings gameSettings)
+        public SpritePool(GameSettings gameSettings)
         {
             var textureGenerator = new TextureGenerator();
 
@@ -36,11 +32,6 @@ namespace Level
                     _sprites[i].Add(sprite); 
                 }
             }
-            //Debug - To delete
-            sprites0 = _sprites[0];
-            sprites1 = _sprites[1];
-            sprites2 = _sprites[2];
-            sprites3 = _sprites[3];
         }
 
         public void ClearPool()

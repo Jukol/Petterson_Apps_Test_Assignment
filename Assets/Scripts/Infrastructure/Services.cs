@@ -10,9 +10,8 @@ namespace Infrastructure
 {
     public class Services : IServices
     {
-        public SpritePool SpritePool => _spritePool;
         public float ScreenWidth => _screenWidth;
-        public float ScreenHeight => _screenHeight;
+        public SpritePool SpritePool => _spritePool;
         
         private readonly float _screenHeight;
         private readonly float _screenWidth;
@@ -24,7 +23,7 @@ namespace Infrastructure
         private readonly string _bundleUrl;
         
         private IRandomizable _randomizeService;
-        private readonly SpritePool _spritePool;
+        private SpritePool _spritePool;
 
         public Services(InitializationParameters initParameters, SpritePool spritePool)
         {
@@ -38,7 +37,12 @@ namespace Infrastructure
             _bundleUrl = initParameters.BundleUrl;
             _spritePool = spritePool;
 
-            _spritePool.Init(_gameSettings);
+            CreateNewSpritePool();
+        }
+
+        public void CreateNewSpritePool()
+        {
+            _spritePool = new SpritePool(_gameSettings);
         }
 
         public void InitRandomizer(GameSettings gameSettings)

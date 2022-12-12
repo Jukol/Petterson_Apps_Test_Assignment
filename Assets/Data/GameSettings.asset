@@ -28,7 +28,7 @@ MonoBehaviour:
   - id: 2
     name: Level 2
     intervalMinimum: 0.4
-    intervalMaximum: 1.5
+    intervalMaximum: 1
     minimumSizeFactor: 0.03
     maximumSizeFactor: 0.35
     speedFactor: 1.8
@@ -36,7 +36,7 @@ MonoBehaviour:
   - id: 3
     name: Level 3
     intervalMinimum: 0.3
-    intervalMaximum: 1.2
+    intervalMaximum: 0.5
     minimumSizeFactor: 0.02
     maximumSizeFactor: 0.2
     speedFactor: 3

@@ -21,15 +21,10 @@ namespace Level.Targets
             var myTransform = transform;
             var size = targetInitParameters.Size;
             var position = targetInitParameters.Place;
-            var texSize = targetInitParameters.Sprite.rect.height;
-            
+
             spriteRenderer.sprite = targetInitParameters.Sprite;
 
-            //var sizeBySprite = size / (colliderRadius * 2);
-            //var positionBySprite = new Vector2(position.x / (colliderRadius * 2), position.y / (colliderRadius * 2)); 
-            
             myTransform.localScale = new Vector3(size, size, 1);
-            
             myTransform.position = position;
 
             speed = targetInitParameters.Speed;

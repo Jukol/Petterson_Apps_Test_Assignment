@@ -17,10 +17,10 @@ namespace Infrastructure
         
         [SerializeField] private BackgroundManager backgroundManager;
         [SerializeField] private BackgroundContainer backgroundContainer;
-        [SerializeField] private SpritePool spritePool;
 
         private IServices _services; 
         private Camera _camera;
+        private SpritePool _spritePool;
 
         private void Awake()
         {
@@ -35,7 +35,7 @@ namespace Infrastructure
 
             var initParameters = SetInitParameters(screenHeight, screenWidth);
 
-            _services = new Services(initParameters, spritePool);
+            _services = new Services(initParameters, _spritePool);
             
             _services.StartGame();
         }
